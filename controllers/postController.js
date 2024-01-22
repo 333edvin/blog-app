@@ -45,7 +45,7 @@ export const createPostController = async(req,res)=>{
 //get posts=================================================
 export const getPostController = async(req,res)=>{
     try {
-        const post = await postModel.find({}).populate('category').select("-photo").limit(30).sort({createdAt:-1})
+        const post = await postModel.find({}).populate('category').select("-photo").limit(30).sort({createdAt:-1}).maxTimeMS(20000);
         res.status(200).send({
             total:post.length,
             success:true,
